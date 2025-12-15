@@ -65,6 +65,9 @@ public class Project {
   @Column( columnDefinition = "TEXT")
   private String videoLink;
 
+  @Column(nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
+  private String isHidden;
+
   @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<ProjectImage> images = new ArrayList<>();
 
