@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.thegooddeveloper.mapper.ProjectMapper;
+import com.thegooddeveloper.portfolio.mapper.ProjectMapper;
 import com.thegooddeveloper.portfolio.dto.CategoryDTO;
 import com.thegooddeveloper.portfolio.dto.CertificateDTO;
 import com.thegooddeveloper.portfolio.dto.ProjectDTO;

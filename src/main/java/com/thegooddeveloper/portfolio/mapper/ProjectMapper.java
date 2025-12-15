@@ -1,4 +1,4 @@
-package com.thegooddeveloper.mapper;
+package com.thegooddeveloper.portfolio.mapper;
 
 
 
@@ -24,6 +24,7 @@ public class ProjectMapper {
     dto.setPlaystoreLink(project.getPlaystoreLink());
     dto.setDeploymentLink(project.getDeploymentLink());
     dto.setVideoLink(project.getVideoLink());
+    dto.setIsHidden(project.getIsHidden());
     if (project.getProjectCategory() != null) {
       dto.setCategoryId(project.getProjectCategory().getCategoryId());
       dto.setCategoryName(project.getProjectCategory().getCategoryName());
