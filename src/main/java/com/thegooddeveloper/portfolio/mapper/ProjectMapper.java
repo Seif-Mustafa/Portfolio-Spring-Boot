@@ -1,19 +1,40 @@
 package com.thegooddeveloper.portfolio.mapper;
 
-
-
-import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.thegooddeveloper.portfolio.dto.ProjectDTO;
 import com.thegooddeveloper.portfolio.dto.ProjectImageDTO;
+import com.thegooddeveloper.portfolio.dto.request.CreateProjectRequest;
+import com.thegooddeveloper.portfolio.entity.Category;
 import com.thegooddeveloper.portfolio.entity.Project;
+import com.thegooddeveloper.portfolio.entity.UserInfo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ProjectMapper {
 
-  public static ProjectDTO toDto(Project project) {
-    if (project == null) return null;
+  public Project toEntity(CreateProjectRequest request, UserInfo user, Category category) {
+    Project project = new Project();
+    project.setUserInfo(user);
+    project.setProjectCategory(category);
+    project.setProjectPriority(request.getProjectPriority());
+    project.setProjectName(request.getProjectName());
+    project.setProjectDescription(request.getProjectDescription());
+    project.setDevelopmentDate(request.getDevelopmentDate());
+    project.setGithubLink(request.getGithubLink());
+    project.setPlaystoreLink(request.getPlaystoreLink());
+    project.setDeploymentLink(request.getDeploymentLink());
+    project.setVideoLink(request.getVideoLink());
+    project.setIsHidden("N");
+
+    return project;
+  }
+
+  public ProjectDTO toDto(Project project) {
+    if (project == null)
+      return null;
     ProjectDTO dto = new ProjectDTO();
     dto.setProjectId(project.getProjectId());
     dto.setProjectName(project.getProjectName());
@@ -34,7 +55,8 @@ public class ProjectMapper {
       List<ProjectImageDTO> imgs = project.getImages().stream().map(img -> {
         ProjectImageDTO pid = new ProjectImageDTO();
         pid.setProjectImageId(img.getProjectImageId());
-        pid.setImageBase64(Base64.getEncoder().encodeToString(img.getImage()));
+        pid.setImageLink(img.getImageLink());
+        // pid.setImageBase64(Base64.getEncoder().encodeToString(img.getImage()));
         return pid;
       }).collect(Collectors.toList());
       dto.setImages(imgs);
@@ -42,7 +64,9 @@ public class ProjectMapper {
     return dto;
   }
 
-  public static List<ProjectDTO> toDtoList(List<Project> projects) {
-    return projects == null ? List.of() : projects.stream().map(ProjectMapper::toDto).collect(Collectors.toList());
+  public List<ProjectDTO> toDtoList(List<Project> projects) {
+    return projects == null
+        ? List.of()
+        : projects.stream().map(this::toDto).collect(Collectors.toList());
   }
 }

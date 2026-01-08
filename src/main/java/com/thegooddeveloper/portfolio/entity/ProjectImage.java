@@ -1,5 +1,7 @@
 package com.thegooddeveloper.portfolio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,11 +27,15 @@ public class ProjectImage {
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long projectImageId;
 
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name="project_id", nullable=false)
   private Project project;
 
-  @Lob
-  @Column(nullable=false, columnDefinition = "MEDIUMBLOB")
-  private byte[] image;
+  @Column(name = "image_link")
+  private String imageLink;
+
+  // @Lob
+  // @Column(nullable=false, columnDefinition = "MEDIUMBLOB")
+  // private byte[] image;
 }

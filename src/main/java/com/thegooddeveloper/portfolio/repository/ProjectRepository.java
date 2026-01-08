@@ -23,9 +23,14 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
             SELECT p FROM Project p 
             WHERE ( :userId IS NULL OR p.userInfo.userId = :userId )
             AND ( :categoryId IS NULL OR p.projectCategory.categoryId = :categoryId)
+            AND ( :projectId IS NULL OR p.projectId = :projectId)
             AND ( :isHidden IS NULL OR p.isHidden = :isHidden)
+            order by p.projectPriority DESC
             """)
-    List<Project> getAllProjectsByOptionalFilters(@Param("userId") Long userId, @Param("categoryId") Long categoryId, @Param("isHidden") String isHidden);
+    List<Project> getAllProjectsByOptionalFilters(@Param("userId") Long userId,
+                                                  @Param("categoryId") Long categoryId,
+                                                  @Param("projectId") Long projectId,
+                                                  @Param("isHidden") String isHidden);
 
 
     @Modifying

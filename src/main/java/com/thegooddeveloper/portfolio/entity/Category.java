@@ -38,6 +38,8 @@ public class Category {
   @Column(nullable = false)
   private String categoryName;
 
+  @Column(nullable = false, length = 1)
+  private String isHidden;
   // Relationships
   @OneToMany(mappedBy = "certificateCategory", cascade = CascadeType.ALL)
   @JsonIgnore

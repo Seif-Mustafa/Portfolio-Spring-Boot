@@ -3,8 +3,6 @@ package com.thegooddeveloper.portfolio.dto.request;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 @Data
@@ -17,9 +15,10 @@ public class UpdateProjectRequest {
   private String githubLink;
   private String playstoreLink;
   private String deploymentLink;
-    private String videoLink;
+  private String videoLink;
   // existing field that you already have for adding images:
-  private List<MultipartFile> newImages;
+  // private List<MultipartFile> newImages;
+  private List<String> imagesLinks;
 
   // NEW: IDs of project images to remove
   private List<Long> removeImageIds;

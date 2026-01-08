@@ -18,4 +18,14 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
   @Query("SELECT c FROM Category c WHERE c.userInfo.userId = :userId")
   List<Category> findByUserId(@Param("userId") Long userId);
+
+  @Query("""
+      SELECT c FROM Category c
+      WHERE ( :categoryId IS NULL OR c.categoryId = :categoryId )
+      AND ( :userId IS NULL OR c.userInfo.userId = :userId )
+      AND ( :isHidden IS NULL OR c.isHidden = :isHidden )
+      """)
+  List<Category> getCategoriesByFilters(@Param("categoryId") Long categoryId,
+      @Param("userId") Long userId,
+      @Param("isHidden") String isHidden);
 }

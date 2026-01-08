@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class ProjectImageDTO {
     private Long projectImageId;
-    private String imageBase64;
+    private String imageLink;
+    // private String imageBase64;
 }

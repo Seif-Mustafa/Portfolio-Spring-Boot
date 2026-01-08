@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.thegooddeveloper.portfolio.entity.Certificate;
 
+@Repository
 public interface CertificateRepository extends JpaRepository<Certificate, Long>{
 
   List<Certificate> findByUserInfoUserId(Long userId);
@@ -17,5 +19,16 @@ public interface CertificateRepository extends JpaRepository<Certificate, Long>{
 
   @Query("SELECT c FROM Certificate c WHERE c.userInfo.userId = :userId AND c.certificateCategory.categoryId = :categoryId")
   List<Certificate> findByUserIdAndCategoryId(@Param("userId") Long userId, @Param("categoryId") Long categoryId);
+
+  @Query("""
+            SELECT c FROM Certificate c
+            WHERE ( :categoryId IS NULL OR c.certificateCategory.categoryId = :categoryId )
+            AND ( :userId IS NULL OR c.userInfo.userId = :userId )
+            AND ( :isMajor IS NULL OR c.isMajor = :isMajor )
+            """)
+    List<Certificate> getCertificatesWithFilters(@Param("categoryId") Long categoryId,
+                                           @Param("userId") Long userId,
+                                           @Param("isMajor") String isMajor
+                                          );
 
 }
