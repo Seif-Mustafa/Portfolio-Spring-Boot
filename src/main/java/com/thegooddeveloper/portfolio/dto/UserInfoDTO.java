@@ -13,6 +13,8 @@ public class UserInfoDTO {
   private String whatsappLink;
   private String linkedinLink;
   private String githubLink;
-  private String userImageBase64;
+  private String imageLink;
+
+  // private String userImageBase64;
 
 }

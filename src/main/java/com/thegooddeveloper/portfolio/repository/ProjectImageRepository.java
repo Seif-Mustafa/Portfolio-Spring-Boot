@@ -8,4 +8,7 @@ import com.thegooddeveloper.portfolio.entity.ProjectImage;
 
 public interface ProjectImageRepository extends JpaRepository<ProjectImage, Long> {
     List<ProjectImage> findByProjectProjectId(Long projectId);
+
+    List<ProjectImage> findByProject_ProjectId(Long projectId);
+
 }

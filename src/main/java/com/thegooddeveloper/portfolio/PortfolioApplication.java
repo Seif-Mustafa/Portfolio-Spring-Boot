@@ -9,7 +9,6 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 @EnableAutoConfiguration
 @EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class PortfolioApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(PortfolioApplication.class, args);
 	}

@@ -35,14 +35,18 @@ public class Certificate {
   @JoinColumn(name="certificate_category", nullable=false)
   private Category certificateCategory;
 
-  @Lob
-  @Column(nullable=false, columnDefinition = "MEDIUMBLOB")
-  private byte[] image;
+  @Column(name = "image_link")
+  private String imageLink;
+
+  // @Column(nullable=false, columnDefinition = "MEDIUMBLOB")
+  // @Lob
+  // @Column( columnDefinition = "MEDIUMBLOB")
+  // private byte[] image;
   
   @Column(nullable=false, columnDefinition="TEXT")
   private String verificationLink;
 
-  @Column(nullable=false,length=255)
+  @Column(nullable=false,length=1)
   private String isMajor; 
 
 }

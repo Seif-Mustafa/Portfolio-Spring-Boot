@@ -33,9 +33,11 @@ public class UserInfo {
   @Column(nullable = false)
   private String username;
 
-  @Lob
-  @Column(nullable = true, columnDefinition = "MEDIUMBLOB")
-  private byte[] userImage;
+  @Column(name="imageLink")
+  private String imageLink;
+  // @Lob
+  // @Column(nullable = true, columnDefinition = "MEDIUMBLOB")
+  // private byte[] userImage;
 
   @Column(nullable = false)
   private String jobTitle;
